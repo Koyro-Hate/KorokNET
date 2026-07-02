@@ -4,126 +4,205 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мои заявки — Корочки.есть</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
     <style>
-        body {
-            background-color: #f4f6f9;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        .nav-text {
+            color: white;
+            font-size: 15px;
         }
-        .dashboard-card {
-            max-width: 900px;
-            margin: 40px auto;
-            border: none;
-            border-radius: 12px;
+        .nav-text strong {
+            color: #ffc107;
         }
-        .card-header {
-            border-top-left-radius: 12px !important;
-            border-top-right-radius: 12px !important;
-            background: #0d6efd;
+        .nav-text a {
+            color: #ff4d4d;
+            text-decoration: none;
+            margin-left: 10px;
+            font-weight: bold;
         }
-        .status-badge {
-            font-size: 0.85rem;
-            padding: 0.4em 0.8em;
-            border-radius: 20px;
+        .nav-text a:hover {
+            text-decoration: underline;
+        }
+        
+        .app-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 35px;
+            text-align: left;
+        }
+        .app-table th, .app-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eeeeee;
+        }
+        .app-table th {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .badge {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        .bg-new { background-color: #e2e3e5; color: #383d41; }
+        .bg-progress { background-color: #fff3cd; color: #856404; }
+        .bg-success { background-color: #d4edda; color: #155724; }
+        
+        .btn-add {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .btn-add:hover {
+            background-color: #218838;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #f0f2f5;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .dashboard-header h3 {
+            margin: 0;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        .form-col {
+            flex: 1;
+        }
+        .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+        .form-group textarea {
+            resize: vertical;
+        }
+        .review-section {
+            border-top: 2px solid #f0f2f5;
+            padding-top: 20px;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">Корочки.есть</a>
-            <div class="navbar-text text-white ms-auto">
-                Вы вошли как: <strong class="text-info">user123</strong> | <a href="authorization.php" class="text-danger text-decoration-none ms-2">Выйти</a>
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">Корочки.есть</div>
+            <div class="nav-text">
+                Вы вошли как: <strong>user123</strong> | <a href="authorization.php">Выйти</a>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <div class="container">
-        <div class="card dashboard-card shadow">
-            <div class="card-header text-white py-3">
-                <h4 class="mb-0 fw-bold">Мои заявки на обучение</h4>
-                <small>Просмотр статуса и управление историей курсов</small>
+    <main class="container main-content">
+        
+        <section class="info-section">
+            
+            <div class="dashboard-header">
+                <div>
+                    <h3>Мои заявки на обучение</h3>
+                    <span style="color: #666; font-size: 14px;">Просмотр статуса и управление историей курсов</span>
+                </div>
+                <a href="new_application.php" class="btn-add">+ Подать новую заявку</a>
             </div>
-            <div class="card-body p-4">
+            <h4 style="color: #555; margin-bottom: 10px; margin-top: 25px;">Список заявок</h4>
+            
+            <table class="app-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Наименование курса</th>
+                        <th>Дата начала</th>
+                        <th>Способ оплаты</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td style="font-weight: bold;">Основы frontend-разработки (Bootstrap)</td>
+                        <td>15.07.2026</td>
+                        <td>Перевод по номеру телефона</td>
+                        <td><span class="badge bg-new">Новая</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td style="font-weight: bold;">Веб-разработка на PHP и MySQL</td>
+                        <td>01.06.2026</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td style="font-weight: bold;">Графический дизайн и основы композиции</td>
+                        <td>10.04.2026</td>
+                        <td>Перевод по номеру телефона</td>
+                        <td><span class="badge bg-success">Обучение завершено</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="review-section">
+                <h4 style="color: #007bff; margin-top: 0; margin-bottom: 15px;">Оставить отзыв о качестве образовательных услуг</h4>
                 
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="fw-bold mb-0 text-secondary">Список заявок</h5>
-                    <a href="new_application.php" class="btn btn-success fw-bold px-4 py-2">
-                        + Подать новую заявку
-                    </a>
-                </div>
-
-                <div class="table-responsive mb-5">
-                    <table class="table table-hover align-middle">
-                        <thead class="table-light">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Наименование курса</th>
-                                <th scope="col">Дата начала</th>
-                                <th scope="col">Способ оплаты</th>
-                                <th scope="col">Статус</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td class="fw-semibold">Основы frontend-разработки (Bootstrap)</td>
-                                <td>15.07.2026</td>
-                                <td>Перевод по номеру телефона</td>
-                                <td><span class="badge bg-secondary status-badge">Новая</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td class="fw-semibold">Веб-разработка на PHP и MySQL</td>
-                                <td>01.06.2026</td>
-                                <td>Наличные</td>
-                                <td><span class="badge bg-warning text-dark status-badge">Идет обучение</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td class="fw-semibold">Графический дизайн и основы композиции</td>
-                                <td>10.04.2026</td>
-                                <td>Перевод по номеру телефона</td>
-                                <td><span class="badge bg-success status-badge">Обучение завершено</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="border-top pt-4">
-                    <h5 class="fw-bold mb-3 text-primary">Оставить отзыв о качестве образовательных услуг</h5>
-                    <form action="#" method="POST">
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="courseSelect" class="form-label fw-semibold">Выберите курс</label>
-                                <select class="form-select" id="courseSelect" required>
-                                    <option value="" disabled selected>-- Выберите программу из списка --</option>
-                                    <option value="1">Основы frontend-разработки (Bootstrap)</option>
-                                    <option value="2">Веб-разработка на PHP и MySQL</option>
-                                    <option value="3">Графический дизайн и основы композиции</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="ratingSelect" class="form-label fw-semibold">Ваша оценка</label>
-                                <select class="form-select" id="ratingSelect" required>
-                                    <option value="5">5 — Отлично, всё понравилось</option>
-                                    <option value="4">4 — Хорошо, но есть замечания</option>
-                                    <option value="3">3 — Удовлетворительно</option>
-                                    <option value="2">2 — Плохо</option>
-                                </select>
-                            </div>
+                <form action="#" method="POST" class="reg-form" style="margin-top: 0;">
+                    <div class="form-row">
+                        <div class="form-col form-group">
+                            <label style="font-weight: bold; font-size: 14px; display: block; margin-bottom: 5px;">Выберите курс:</label>
+                            <select id="courseSelect" required>
+                                <option value="" disabled selected>-- Выберите программу из списка --</option>
+                                <option value="1">Основы frontend-разработки (Bootstrap)</option>
+                                <option value="2">Веб-разработка на PHP и MySQL</option>
+                                <option value="3">Графический дизайн и основы композиции</option>
+                            </select>
                         </div>
-                        <div class="mb-3">
-                            <label for="reviewText" class="form-label fw-semibold">Ваш отзыв</label>
-                            <textarea class="form-control" id="reviewText" rows="3" required placeholder="Напишите ваше мнение о качестве обучения..."></textarea>
+                        <div class="form-col form-group">
+                            <label style="font-weight: bold; font-size: 14px; display: block; margin-bottom: 5px;">Ваша оценка:</label>
+                            <select id="ratingSelect" required>
+                                <option value="5">5 — Отлично, всё понравилось</option>
+                                <option value="4">4 — Хорошо, но есть замечания</option>
+                                <option value="3">3 — Удовлетворительно</option>
+                                <option value="2">2 — Плохо</option>
+                            </select>
                         </div>
-                        <button type="submit" class="btn btn-primary fw-bold px-4 py-2">Отправить отзыв</button>
-                    </form>
-                </div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label style="font-weight: bold; font-size: 14px; display: block; margin-bottom: 5px;">Ваш отзыв:</label>
+                        <textarea id="reviewText" rows="3" required placeholder="Напишите ваше мнение о качестве обучения..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit" style="width: auto; padding: 10px 25px; margin-top: 0;">Отправить отзыв</button>
+                </form>
             </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>выполнила Cаргаева Кира Витальевна 02.07.26</p>
         </div>
-    </div>
+    </footer>
 
 </body>
 </html>

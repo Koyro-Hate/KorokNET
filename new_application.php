@@ -4,89 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Создание заявки — Корочки.есть</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
     <style>
-        body {
-            background-color: #f4f6f9;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        .nav-text {
+            color: white;
+            font-size: 15px;
         }
-        .form-card {
-            max-width: 550px; /* Оптимальная ширина для формы создания */
-            margin: 50px auto;
-            border: none;
-            border-radius: 12px;
+        .nav-text strong {
+            color: #ffc107;
         }
-        .card-header {
-            border-top-left-radius: 12px !important;
-            border-top-right-radius: 12px !important;
-            background: #0d6efd;
+        .nav-text a {
+            color: #ff4d4d;
+            text-decoration: none;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        .nav-text a:hover {
+            text-decoration: underline;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            background-color: #fff;
+        }
+
+        .radio-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .radio-group input[type="radio"] {
+            width: auto;
+            margin: 0;
+            cursor: pointer;
+        }
+        .radio-group label {
+            font-weight: normal;
+            margin: 0;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        .form-help-text {
+            color: #666;
+            font-size: 12px;
+            display: block;
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="applications.html">Корочки.есть</a>
-            <div class="navbar-text text-white ms-auto">
-                Вы вошли как: <strong class="text-info">user123</strong> | <a href="authorization.html" class="text-danger text-decoration-none ms-2">Выйти</a>
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">Корочки.есть</div>
+            <div class="nav-text">
+                Вы вошли как: <strong>user123</strong> | <a href="authorization.php">Выйти</a>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <div class="container">
-        <div class="card form-card shadow">
-            <div class="card-header text-white text-center py-3">
-                <h4 class="mb-0 fw-bold">Новая заявка</h4>
-                <small>Заполнение параметров для записи на курс</small>
-            </div>
-            <div class="card-body p-4">
+    <main class="container main-content">
+        
+        <section class="info-section form-container" style="max-width: 550px; margin: 0 auto;">
+            <h3>Новая заявка</h3>
+            <p>Заполнение параметров для записи на курс</p>
+            
+            <form action="applications.php" method="POST" class="reg-form" style="margin-top: 20px;">
                 
-                <form action="applications.html" method="POST">
+                <div class="form-group">
+                    <label for="courseName">Наименование курса:</label>
+                    <select id="courseName" name="course_name" required>
+                        <option value="" disabled selected>-- Выберите программу обучения --</option>
+                        <option value="frontend">Основы frontend-разработки (Bootstrap)</option>
+                        <option value="php">Веб-разработка на PHP и MySQL</option>
+                        <option value="design">Графический дизайн и основы композиции</option>
+                    </select>
+                    <span class="form-help-text">Выберите одно из доступных направлений.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="startDate">Желаемая дата начала:</label>
+                    <input type="date" id="startDate" name="start_date" required>
+                    <span class="form-help-text">Укажите желаемое число для старта занятий.</span>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 25px;">
+                    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Способ оплаты:</label>
                     
-                    <div class="mb-3">
-                        <label for="courseName" class="form-label fw-semibold">Наименование курса</label>
-                        <select class="form-select" id="courseName" name="course_name" required>
-                            <option value="" disabled selected>-- Выберите программу обучения --</option>
-                            <option value="frontend">Основы frontend-разработки (Bootstrap)</option>
-                            <option value="php">Веб-разработка на PHP и MySQL</option>
-                            <option value="design">Графический дизайн и основы композиции</option>
-                        </select>
-                        <div class="form-text text-muted" style="font-size: 0.8rem;">Выберите одно из доступных направлений.</div>
+                    <div class="radio-group">
+                        <input type="radio" name="payment_method" id="paymentPhone" value="phone" checked required>
+                        <label for="paymentPhone">Перевод по номеру телефона</label>
                     </div>
-
-                    <div class="mb-3">
-                        <label for="startDate" class="form-label fw-semibold">Желаемая дата начала</label>
-                        <input type="date" class="form-control" id="startDate" name="start_date" required>
-                        <div class="form-text text-muted" style="font-size: 0.8rem;">Укажите желаемое число для старта занятий.</div>
+                    
+                    <div class="radio-group">
+                        <input type="radio" name="payment_method" id="paymentCash" value="cash" required>
+                        <label for="paymentCash">Наличные расчеты</label>
                     </div>
+                </div>
 
-                    <div class="mb-4">
-                        <label class="form-label fw-semibold d-block">Способ оплаты</label>
-                        
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="payment_method" id="paymentPhone" value="phone" checked required>
-                            <label class="form-check-input-label" for="paymentPhone">
-                                Перевод по номеру телефона
-                            </label>
-                        </div>
-                        
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="payment_method" id="paymentCash" value="cash" required>
-                            <label class="form-check-input-label" for="paymentCash">
-                                Наличные расчеты
-                            </label>
-                        </div>
-                    </div>
+                <button type="submit" class="btn-submit">Отправить заявку на модерацию</button>
+            </form>
 
-                    <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">Отправить заявку на модерацию</button>
-                </form>
+            <p class="form-footer-text" style="margin-top: 20px;">
+                <a href="applications.php" style="text-decoration: none;">← Вернуться к списку моих заявок</a>
+            </p>
+        </section>
 
-            </div>
-            <div class="card-footer text-center bg-white py-3 border-0">
-                <a href="applications.php" class="text-decoration-none text-primary">← Вернуться к списку моих заявок</a>
-            </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>выполнила Cаргаева Кира Витальевна 02.07.26</p>
         </div>
-    </div>
+    </footer>
+
 </body>
 </html>
